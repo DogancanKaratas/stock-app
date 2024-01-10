@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   firms: [],
   products: [],
   purchases: [],
   brands: [],
-
-}
+  firms: [],
+};
 
 const stockSlice = createSlice({
   name: second,
   initialState,
-  reducers: {}
+  reducers: {},
 });
 
-export const {} = stockSlice.actions
+export const {} = stockSlice.actions;
 
-export default stockSlice.reducer
+export default stockSlice.reducer;
