@@ -6,9 +6,7 @@ import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
-
-    const {postStock,putStock} = useStockCalls()
-  
+  const { postStock, putStock } = useStockCalls();
 
   const handleChange = (e) => {
     // const {name,value} = e.target;
@@ -18,14 +16,13 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(info._id){
-        putStock("firms",info)
-    }else{
-        postStock("firms",info)
+    if (info._id) {
+      putStock("firms", info);
+    } else {
+      postStock("firms", info);
     }
-    
+
     handleClose();
-    
   };
   console.log(info);
   return (
@@ -83,7 +80,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
               required
             />
             <Button type="submit" variant="contained" size="large">
-              Submit
+              {info._id ? "Edit " : "Add"}
             </Button>
           </Box>
         </Box>
