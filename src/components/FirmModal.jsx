@@ -1,11 +1,13 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { modalStyle } from "../styles/globalStyles";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import useStockCalls from "../service/useStockCalls";
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
+
+    const {postStock} = useStockCalls()
   
 
   const handleChange = (e) => {
@@ -16,7 +18,7 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //? post
+    postStock("firms",info)
     handleClose();
     
   };
