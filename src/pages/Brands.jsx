@@ -1,56 +1,65 @@
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import useStockCalls from "../service/useStockCalls";
-import { useSelector } from "react-redux";
-import { Grid } from "@mui/material";
-import FirmCard from "../components/FirmCard";
-import FirmModal from "../components/FirmModal";
-import BrandModal from "../components/BrandModal";
-import BrandCard from "../components/BrandCard";
+import { Typography, Box, Grid, Alert, Button } from "@mui/material"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import BrandCard from "../components/BrandCard"
+import BrandModal from "../components/BrandModal"
+import useStockCall from "../service/useStockCalls"
 
 const Brands = () => {
-  // const { getFirms, getSales } = useStockCalls()
-  const { getBrand } = useStockCalls();
-  const { brands } = useSelector((state) => state.stock);
+  const { getStocks } = useStockCall()
+  const { brands, loading } = useSelector((state) => state.stock)
 
-  const [info, setInfo] = useState({
-    name: "",
-    image: "",
-  });
+  const [info, setInfo] = useState({ name: "", image: "" })
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
     setInfo({ name: "", image: "" })
   }
 
-
   useEffect(() => {
-    
-    getBrand("brands");
-  }, []);
- 
+    getStocks("brands")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
-    <div>
-      <Typography variant="h4" color="error" mb={3}>
-        Firms
+    <Box>
+      <Typography variant="h4" color="error" mb={2}>
+        Brands
       </Typography>
+
       <Button variant="contained" onClick={handleOpen}>
         New Brand
       </Button>
 
-      <BrandModal open={open} handleClose={handleClose} info={info} setInfo={setInfo} />
-      <Grid container gap={2} mt={3} justifyContent={"center"}>
-        {brands?.map((brand) => (
-          <Grid item key={brand._id}>
-            <BrandCard brand={brand} handleOpen={handleOpen} setInfo={setInfo}/>
-          </Grid>
-        ))}
-      </Grid>
-    </div>
-  );
-};
+      <BrandModal
+        open={open}
+        handleClose={handleClose}
+        info={info}
+        setInfo={setInfo}
+      />
 
-export default Brands;
+      {!loading && !brands?.length && (
+        <Alert severity="warning" sx={{ mt: 4, width: "50%" }}>
+          There is no brand to show
+        </Alert>
+      )}
+
+      {brands?.length > 0 && (
+        <Grid container gap={2} mt={3} justifyContent={"center"}>
+          {brands?.map((brand) => (
+            <Grid item key={brand._id}>
+              <BrandCard
+                brand={brand}
+                handleOpen={handleOpen}
+                setInfo={setInfo}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Box>
+  )
+}
+
+export default Brands
