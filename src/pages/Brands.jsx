@@ -1,26 +1,26 @@
-import { Typography, Box, Grid, Alert, Button } from "@mui/material"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import BrandCard from "../components/BrandCard"
-import BrandModal from "../components/BrandModal"
-import useStockCall from "../service/useStockCalls"
+import { Typography, Box, Grid, Alert, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import BrandCard from "../components/BrandCard";
+import BrandModal from "../components/BrandModal";
+import useStockCall from "../service/useStockCalls";
 
 const Brands = () => {
-  const { getStocks } = useStockCall()
-  const { brands, loading } = useSelector((state) => state.stock)
+  const { getStocks } = useStockCall();
+  const { brands, loading } = useSelector((state) => state.stock);
 
-  const [info, setInfo] = useState({ name: "", image: "" })
+  const [info, setInfo] = useState({ name: "", image: "" });
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setOpen(false)
-    setInfo({ name: "", image: "" })
-  }
+    setOpen(false);
+    setInfo({ name: "", image: "" });
+  };
 
   useEffect(() => {
-    getStocks("brands")
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    getStocks("brands");
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box>
@@ -59,7 +59,7 @@ const Brands = () => {
         </Grid>
       )}
     </Box>
-  )
-}
+  );
+};
 
-export default Brands
+export default Brands;

@@ -1,25 +1,32 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { modalStyle } from "../styles/globalStyles";
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 import { useSelector } from "react-redux";
 
 export default function ProductModal({ open, handleClose, info, setInfo }) {
-  const { postStock } = useStockCalls()
+  const { postStock } = useStockCalls();
 
-  const {categories,brands} = useSelector((state) => state.stock)
+  const { categories, brands } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
-    setInfo({ ...info, [e.target.name]: e.target.value })
-  }
+    setInfo({ ...info, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    postStock("products", info)
-    handleClose()
-  }
+    e.preventDefault();
+    postStock("products", info);
+    handleClose();
+  };
 
   return (
     <div>
@@ -45,10 +52,11 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
                 label="Category"
                 onChange={handleChange}
               >
-                {categories.map((item)=>(
-                  <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
-                  ))}
-                
+                {categories.map((item) => (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <FormControl fullWidth>
@@ -61,10 +69,11 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
                 label="Brand"
                 onChange={handleChange}
               >
-                {brands.map((item)=>(
-                  <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>
-                  ))}
-                
+                {brands.map((item) => (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
 
@@ -79,7 +88,7 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
               required
             />
             <Button type="submit" variant="contained" size="large">
-               Add Product
+              Add Product
             </Button>
           </Box>
         </Box>
