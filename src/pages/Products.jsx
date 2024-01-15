@@ -6,31 +6,28 @@ import { useSelector } from "react-redux"
 import { Grid } from "@mui/material"
 import ProductModal from "../components/ProductModal"
 import ProductTable from "../components/ProductTable"
+import { ErrorMsg } from "../components/DataFetchMsg"
 
 const Products = () => {
-  // const { getFirms, getSales } = useStockCalls()
-  const { getStocks } = useStockCalls()
-  const { products } = useSelector((state) => state.stock)
-
-  const [info, setInfo] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    image: "",
-  })
-
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => {
-    setOpen(false)
-    setInfo({ name: "", phone: "", address: "", image: "" })
-  }
-
-  useEffect(() => {
-    getStocks("products")
-    getStocks("categories")
-    getStocks("brands")
-  }, [])
+    // const { getFirms, getSales } = useStockCalls()
+    const { getStocks } = useStockCalls()
+    const { products,error,loading } = useSelector((state) => state.stock)
+  
+    const initialState = { categoryId: "", brandId: "", name: "" }
+    const [info, setInfo] = useState(initialState)
+  
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => {
+      setOpen(false)
+      setInfo(initialState)
+    }
+  
+    useEffect(() => {
+      getStocks("productss")
+      // getStocks("categories")
+      // getStocks("brands")
+    }, [])
 
   return (
     <div>
@@ -47,8 +44,9 @@ const Products = () => {
         info={info}
         setInfo={setInfo}
       />
-
-      <ProductTable />
+      {error && <ErrorMsg />}
+      
+      {!error && <ProductTable />}
     </div>
   )
 }
