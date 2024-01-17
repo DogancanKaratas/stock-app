@@ -50,7 +50,7 @@ const useStockCalls = () => {
     dispatch(fetchStart())
     try {
       const [products, purchases, brands, firms] = await Promise.all([
-        axiosWithToken("/product/"),
+        axiosWithToken("/products/"),
         axiosWithToken("/purchases/"),
         axiosWithToken("/brands/"),
         axiosWithToken("/firms/"),
