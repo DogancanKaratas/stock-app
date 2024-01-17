@@ -16,6 +16,7 @@ const stockSlice = createSlice({
   initialState,
   reducers: {
     fetchStart: (state) => {
+      state.error = false
       state.loading = true
     },
     // getFirmsSuccess: (state, { payload }) => {
@@ -33,6 +34,7 @@ const stockSlice = createSlice({
     getStockSuccess: (state, action) => {
       state[action.payload.url] = action.payload.apiData
       state.loading = false
+      state.error = false
     },
 
     fetchFail: (state) => {

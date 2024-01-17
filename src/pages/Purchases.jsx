@@ -28,10 +28,10 @@ const Purchases = () => {
   }
 
   useEffect(() => {
-    getStocks("products")
-    getStocks("purchases")
-    getStocks("brands")
-    getStocks("firms")
+    getStocks("product")
+    // getStocks("purchase")
+    // getStocks("brands")
+    // getStocks("firms")
   }, []) // eslint-disable-line
 
   return (
@@ -49,8 +49,8 @@ const Purchases = () => {
 
       {error && <ErrorMsg />}
       {loading && <TableSkeleton />}
-      {!loading && !purchases?.length && <NoDataMsg />}
-      {!loading && purchases?.length > 0 && (
+      {!error && !loading && !purchases?.length && <NoDataMsg />}
+      {!error && !loading && purchases?.length > 0 && (
         <PurchaseTable setInfo={setInfo} handleOpen={handleOpen} />
       )}
     </Container>
