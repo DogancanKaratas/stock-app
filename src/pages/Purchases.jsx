@@ -49,7 +49,7 @@ const Purchases = () => {
         setInfo={setInfo}
       />
 
-      {error && <ErrorMsg />}
+{error && <ErrorMsg />}
       {loading && <TableSkeleton />}
       {!error && !loading && !purchases?.length && <NoDataMsg />}
       {!error && !loading && purchases?.length > 0 && (
