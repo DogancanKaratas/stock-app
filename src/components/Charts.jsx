@@ -31,7 +31,7 @@ const Charts = () => {
       <Grid container mt={2} spacing={2}>
         <Grid item xs={12} lg={6}>
           <Card>
-            <Title>Total Sales (USD)</Title>
+            <Title>TOTAL SALES (USD)</Title>
             <AreaChart
               className=" mt-4"
               data={salesData}
@@ -44,7 +44,7 @@ const Charts = () => {
         </Grid>
         <Grid item xs={12} lg={6}>
           <Card>
-            <Title>Total Purchases (USD)</Title>
+            <Title>TOTAL PURCHASES (USD)</Title>
             <AreaChart
               className="mt-4"
               data={purchasesData}
