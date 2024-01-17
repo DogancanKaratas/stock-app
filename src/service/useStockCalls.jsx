@@ -52,17 +52,19 @@ const useStockCalls = () => {
       toastErrorNotify(`${url} silinemedi`)
     }
   }
-  const postStock = async (url = "firms",info) => {
+
+  const postStock = async (url = "firms", info) => {
     dispatch(fetchStart())
     try {
-      await axiosWithToken.post(`/${url}/`,info)
-      toastSuccessNotify(`${url} bilgisi eklenmiştir.`)
+      await axiosWithToken.post(`/${url}/`, info)
+      toastSuccessNotify(`${url} kayıdı eklenmiştir.`)
       getStocks(url)
     } catch (error) {
       dispatch(fetchFail())
-      toastErrorNotify(`${url} eklenemed.`)
+      toastErrorNotify(`${url} kaydi eklenemiştir.`)
     }
   }
+
   const putStock = async (url = "firms", info) => {
     dispatch(fetchStart())
     try {
@@ -74,52 +76,8 @@ const useStockCalls = () => {
       toastErrorNotify(`${url} kaydi güncelenememiştir.`)
     }
   }
-  const postBrand = async (url = "brands",info) => {
-    dispatch(fetchStart())
-    try {
-      await axiosWithToken.post(`/${url}/`,info)
-      toastSuccessNotify(`${url} bilgisi eklenmiştir.`)
-      getStocks(url)
-    } catch (error) {
-      dispatch(fetchFail())
-      toastErrorNotify(`${url} eklenemed.`)
-    }
-  }
-  const putBrand = async (url = "brands", info) => {
-    dispatch(fetchStart())
-    try {
-      await axiosWithToken.put(`/${url}/${info._id}`, info)
-      toastSuccessNotify(`${url} kayıdı güncellenmiştir..`)
-      getStocks(url)
-    } catch (error) {
-      dispatch(fetchFail())
-      toastErrorNotify(`${url} kaydi güncelenememiştir.`)
-    }
-  }
-  const deleteBrand = async (url = "brands", id) => {
-    dispatch(fetchStart())
-    try {
-      await axiosWithToken.delete(`/${url}/${id}/`)
-      toastSuccessNotify(`${url} bilgisi silinmiştir.`)
-      getStocks(url)
-    } catch (error) {
-      dispatch(fetchFail())
-      toastErrorNotify(`${url} silinemedi`)
-    }
-  }
-  const getBrand = async (url = "brands") => {
-    dispatch(fetchStart())
-    try {
-      const { data } = await axiosWithToken(`/${url}/`)
-      const apiData = data.data
-      dispatch(getStockSuccess({ apiData, url }))
-    } catch (error) {
-      dispatch(fetchFail())
-      toastErrorNotify(`${url} bilgileri çekilemedi.`)
-    }
-  }
 
-  return { getStocks, deleteStock,postStock,putStock,postBrand,putBrand,deleteBrand,getBrand }
+  return { getStocks, deleteStock, postStock, putStock }
 }
 
 export default useStockCalls
