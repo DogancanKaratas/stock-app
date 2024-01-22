@@ -31,4 +31,4 @@
 <img width="100%" alt="44" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/f82859dd-2d1e-4148-ab9b-cf34eca7319f">
 <img width="100%" alt="55" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/7d6d628a-aec4-40e4-b7c9-cff59f980854">
 <img width="100%" alt="66" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/2ef686dc-fb65-4d60-b325-db0199aa7c00">
-<img width="257" alt="77" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/00ba0a43-74ce-442c-ab84-970c9736c015"> <img width="245" alt="88" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/0054c3aa-f848-4de6-ae17-528c1b5928b8">
+<img width="245" alt="77" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/00ba0a43-74ce-442c-ab84-970c9736c015"> <img width="245" alt="88" src="https://github.com/DogancanKaratas/stock-app/assets/140513435/0054c3aa-f848-4de6-ae17-528c1b5928b8">
