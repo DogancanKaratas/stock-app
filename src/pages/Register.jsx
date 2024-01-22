@@ -1,17 +1,17 @@
-import Container from "@mui/material/Container"
-import Typography from "@mui/material/Typography"
-import Avatar from "@mui/material/Avatar"
-import LockIcon from "@mui/icons-material/Lock"
-import image from "../assets/result.svg"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
-import { Link } from "react-router-dom"
-import RegisterForm, { registerSchema } from "../components/RegisterForm"
-import { Formik } from "formik"
-import useAuthCalls from "../service/useAuthCalls"
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import LockIcon from "@mui/icons-material/Lock";
+import image from "../assets/1.jpg";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
+import RegisterForm, { registerSchema } from "../components/RegisterForm";
+import { Formik } from "formik";
+import useAuthCalls from "../service/useAuthCalls";
 
 const Register = () => {
-  const { register } = useAuthCalls()
+  const { register } = useAuthCalls();
 
   return (
     <Container maxWidth="lg">
@@ -26,7 +26,12 @@ const Register = () => {
         }}
       >
         <Grid item xs={12}>
-          <Typography variant="h3" color="primary" align="center">
+          <Typography
+            variant="h3"
+            color="red"
+            align="center"
+            style={{ fontFamily: "initial" }}
+          >
             STOCK APP
           </Typography>
         </Grid>
@@ -34,7 +39,7 @@ const Register = () => {
         <Grid item xs={12} sm={10} md={6}>
           <Avatar
             sx={{
-              backgroundColor: "secondary.light",
+              backgroundColor: "red",
               m: "auto",
               width: 40,
               height: 40,
@@ -45,8 +50,9 @@ const Register = () => {
           <Typography
             variant="h4"
             align="center"
-            mb={2}
-            color="secondary.light"
+            mb={4}
+            color="green"
+            fontWeight="bolder"
           >
             Register
           </Typography>
@@ -61,26 +67,36 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-              register(values)
-              actions.resetForm()
-              actions.setSubmitting(false)
+              register(values);
+              actions.resetForm();
+              actions.setSubmitting(false);
             }}
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
 
-          <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              mt: 2,
+              "&:hover": {
+                color: "red",
+              },
+              transition: "all 0.5s ease-in-out",
+              marginBottom: "10px",
+            }}
+          >
             <Link to="/">Do you have an account?</Link>
           </Box>
         </Grid>
 
         <Grid item xs={0} sm={7} md={6}>
           <Container>
-            <img src={image} alt="" />
+            <img src={image} alt="img" style={{ borderRadius: "100%" }} />
           </Container>
         </Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

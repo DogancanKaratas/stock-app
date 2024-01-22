@@ -13,6 +13,7 @@ import { useSelector } from "react-redux"
 import useAuthCalls from "../service/useAuthCalls"
 import MenuListItems from "../components/MenuListItems"
 import { Outlet } from "react-router-dom"
+import bg from "../assets/1.jpg"
 
 const drawerWidth = 200
 
@@ -39,13 +40,14 @@ function Dashboard(props) {
     window !== undefined ? () => window().document.body : undefined
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          
         }}
       >
         <Toolbar>
@@ -58,8 +60,9 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Stock App
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 , display:"flex",justifyContent:"flex-start",alignItems:"center",gap:"10px" }}>
+          <img src={bg} alt="" width={"50px"} style={{borderRadius:"50px"}} />
+           Stock App 
           </Typography>
 
           {user && (

@@ -1,19 +1,20 @@
-import Avatar from "@mui/material/Avatar"
-import Container from "@mui/material/Container"
-import Grid from "@mui/material/Grid"
-import Typography from "@mui/material/Typography"
-import LockIcon from "@mui/icons-material/Lock"
-import image from "../assets/result.svg"
-import { Link } from "react-router-dom"
-import Box from "@mui/material/Box"
-import TextField from "@mui/material/TextField"
-import { Button } from "@mui/material"
-import { Formik, Form } from "formik"
-import { object, string } from "yup"
-import useAuthCalls from "../service/useAuthCalls"
+import Avatar from "@mui/material/Avatar";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import LockIcon from "@mui/icons-material/Lock";
+// import image from "../assets/result.svg"
+import image from "../assets/1.jpg";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
+import { Formik, Form } from "formik";
+import { object, string } from "yup";
+import useAuthCalls from "../service/useAuthCalls";
 
 const Login = () => {
-  const { login } = useAuthCalls()
+  const { login } = useAuthCalls();
 
   const loginSchema = object({
     email: string()
@@ -30,7 +31,7 @@ const Login = () => {
         /[@$!%*?&]+/,
         "Şifre en az bir özel karakter (@$!%*?&) içermelidir"
       ),
-  })
+  });
   return (
     <Container maxWidth="lg">
       <Grid
@@ -43,7 +44,12 @@ const Login = () => {
         }}
       >
         <Grid item xs={12} mb={3}>
-          <Typography variant="h3" color="primary" align="center">
+          <Typography
+            variant="h3"
+            color="red"
+            align="center"
+            style={{ fontFamily: "initial" }}
+          >
             STOCK APP
           </Typography>
         </Grid>
@@ -51,7 +57,7 @@ const Login = () => {
         <Grid item xs={12} sm={10} md={6}>
           <Avatar
             sx={{
-              backgroundColor: "secondary.light",
+              backgroundColor: "red",
               m: "auto",
               width: 40,
               height: 40,
@@ -63,7 +69,8 @@ const Login = () => {
             variant="h4"
             align="center"
             mb={4}
-            color="secondary.light"
+            color="green"
+            fontWeight="bolder"
           >
             Login
           </Typography>
@@ -73,9 +80,9 @@ const Login = () => {
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               //TODO login(post) istegi
-              login(values)
-              actions.resetForm()
-              actions.setSubmitting(false) //? isSubmitting
+              login(values);
+              actions.resetForm();
+              actions.setSubmitting(false); //? isSubmitting
               //? veriler global state'e aktırlabilir
               //? navigasyon yapılabilir
               //? tost yapılabilr
@@ -108,7 +115,15 @@ const Login = () => {
                     error={touched.password && Boolean(errors.password)}
                     helperText={errors.password}
                   />
-                  <Button variant="contained" type="submit">
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    style={{
+                      color: "green",
+                      backgroundColor: "orange",
+                      fontWeight: "bolder",
+                    }}
+                  >
                     Submit
                   </Button>
                 </Box>
@@ -116,19 +131,29 @@ const Login = () => {
             )}
           </Formik>
 
-          <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              mt: 2,
+              "&:hover": {
+                color: "red",
+              },
+              transition: "all 0.5s ease-in-out",
+              marginBottom: "10px",
+            }}
+          >
             <Link to="/register">Do you have not an account?</Link>
           </Box>
         </Grid>
 
         <Grid item xs={10} sm={7} md={6}>
           <Container>
-            <img src={image} alt="img" />
+            <img src={image} alt="img" style={{ borderRadius: "100%" }} />
           </Container>
         </Grid>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
